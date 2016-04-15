@@ -1,14 +1,21 @@
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
+#include <iostream>
 #include <ctime>
 
 using namespace std;
 
 extern "C" { void asm_main(); 
-			 void asm_score(); }
+			 int asm_score(int); 
+			 void PlayGame(); }
 
-int main()
+int main() {
+	asm_main();
+}
+
+void PlayGame()
 {
+	int score = 0;
 	
     //game window
     sf::RenderWindow window(sf::VideoMode (640,480), "Breakout (Assembly and C++ Version)");
@@ -167,7 +174,8 @@ int main()
                 ballSpeed.y = -ballSpeed.y; //change direction of movement
 
                 bricks[i].setSize(sf::Vector2f(0,0));//brick that has been hit goes away
-				asm_score();
+				score = asm_score(score);
+				cout << "Score: " << score << endl;
                 i = 499;   //terminates loop when all bricks are hit
             }
         }

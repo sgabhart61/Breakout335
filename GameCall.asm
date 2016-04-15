@@ -4,7 +4,7 @@
 .model flat, stdcall
 .stack 4096
 
-main	PROTO C
+PlayGame	PROTO C
 
 .data
 
@@ -12,14 +12,14 @@ main	PROTO C
 asm_main	PROC C
 	
 	mov	eax, 0			;"score"
-	INVOKE	main
+	INVOKE	PlayGame
 
 asm_main	ENDP
 
-asm_score	PROC C
+asm_score	PROC C	num:dword
 
-	add		eax, 50
-	mov		ecx, eax
+	mov	eax, num
+	add eax, 50
 	ret
 
 asm_score	ENDP
