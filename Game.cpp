@@ -24,6 +24,13 @@ void PlayGame()
     sf::RectangleShape bricks[500];
     sf::CircleShape ball(8.f);
     sf::RectangleShape paddle(sf::Vector2f(60, 10));
+    
+    sf::Font font;
+    font.loadFromFile("LemonMilk.otf");
+    sf::Text scoreBox("0", font);
+    scoreBox.setPosition(sf::Vector2f(0,455));
+    scoreBox.setCharacterSize(25);
+    scoreBox.setColor(sf::Color::Green);
 
     paddle.setFillColor(sf::Color::Blue);//paddle is now blue
     ball.setFillColor(sf::Color::Red);//ball is now red 
@@ -175,7 +182,8 @@ void PlayGame()
 
                 bricks[i].setSize(sf::Vector2f(0,0));//brick that has been hit goes away
 				score = asm_score(score);
-				cout << "Score: " << score << endl;
+				string s = to_string(score);
+				scoreBox.setString(s);
                 i = 499;   //terminates loop when all bricks are hit
             }
         }
@@ -223,6 +231,7 @@ void PlayGame()
 
         window.draw(paddle);
         window.draw(ball);
+        window.draw(scoreBox);
         window.display();
 
 		
