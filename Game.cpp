@@ -130,12 +130,12 @@ void PlayGame()
             ball.setPosition(paddle.getPosition());
         }
 
-        if(left.getGlobalBounds().intersects(ball.getGlobalBounds()))
+        if(leftSide.getGlobalBounds().intersects(ball.getGlobalBounds()))
         {
             ballSpeed.x = - ballSpeed.x;
         }
 
-        if(right.getGlobalBounds().intersects(ball.getGlobalBounds()))
+        if(rightSide.getGlobalBounds().intersects(ball.getGlobalBounds()))
         {
             ballSpeed.x = - ballSpeed.x;
         }
