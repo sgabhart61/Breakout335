@@ -150,15 +150,15 @@ void PlayGame()
         window.clear(sf::Color::White);
 
 
-        for (unsigned i = 0; i < 500; i++)
+        for (unsigned i = 0; i < 250; i++)
         {
             window.draw(bricks[i]);
         }
 	   //drawing objects to window.
         window.draw(top);
         window.draw(bottom);
-        window.draw(left);
-        window.draw(right);
+        window.draw(leftSide);
+        window.draw(rightSide);
 
         window.draw(paddle);
         window.draw(ball);
