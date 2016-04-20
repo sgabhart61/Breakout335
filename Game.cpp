@@ -18,11 +18,12 @@ void PlayGame()
 	int score = 0;
 	
     //game window
-    sf::RenderWindow window(sf::VideoMode (640,480), "Breakout (Assembly and C++ Version)");
+    sf::RenderWindow window(sf::VideoMode (640,480), "Breakout!");
 
-   //declairing objects brick, ball,and paddle
+   //declaring objects such as ball and paddle
     sf::RectangleShape bricks[500];
     sf::CircleShape ball(8.f);
+    //using a 2 dimisional vector instead of array because its abilty to add beyond it size
     sf::RectangleShape paddle(sf::Vector2f(60, 10));
     
     sf::Font font;
@@ -38,22 +39,21 @@ void PlayGame()
     paddle.setPosition((window.getSize().x / 2) - (paddle.getSize().x / 2), window.getSize().y - (30 + paddle.getSize().y));
     ball.setPosition(paddle.getPosition().x, paddle.getPosition().y - 30);// using the paddle postition to determine where the ball is placed.
 
-    sf::Vector2f ballSpeed(0.5f,0.5f); //sets ball speed
+    sf::Vector2f ballSpeed(0.9f,0.9f); //sets ball speed
 
     //define sides
     sf::RectangleShape top;
     sf::RectangleShape bottom;
-    sf::RectangleShape left;
-    sf::RectangleShape right;
-
+    sf::RectangleShape leftSide;
+    sf::RectangleShape rightSide;
     //side properties
-    left.setSize(sf::Vector2f(0.1, 640));
-    left.setFillColor(sf::Color::White);
-    left.setPosition(sf::Vector2f(0,0));
+    leftSide.setSize(sf::Vector2f(0.1, 640));
+    leftSide.setFillColor(sf::Color::White);
+    leftSide.setPosition(sf::Vector2f(0,0));
 
-    right.setSize(sf::Vector2f(0.1, 640));
-    right.setFillColor(sf::Color::White);
-    right.setPosition(sf::Vector2f(640,0));
+    rightSide.setSize(sf::Vector2f(0.1, 640));
+    rightSide.setFillColor(sf::Color::White);
+    rightSide.setPosition(sf::Vector2f(640,0));
 
     bottom.setSize(sf::Vector2f(640, 0.1));
     bottom.setFillColor(sf::Color::White);
@@ -70,90 +70,21 @@ void PlayGame()
         bricks[i].setOutlineColor(sf::Color::Black);
         bricks[i].setOutlineThickness(1.f);
 
-
-        if (i == 0)
+	}
+	
+       //Displays Bricks 
+     for ( int i = 0; i < 10; i++)
+    {
+        bricks[i+200].setPosition(0,i*13);
+	  
+        for(int j = i*20+1; j < 20+i*20; j++)
         {
-            bricks[i].setPosition(0, 0);
+            bricks[j].setPosition(bricks[j-1].getPosition().x + bricks[j].getSize().x, i*13);
+		
         }
-        else if (i < 50)
-        {
-            bricks[i].setPosition(bricks[i-1].getPosition().x + bricks[i].getSize().x, 0);
-        }
-        else if (i==50)
-        {
-            bricks[i].setPosition(0, 0+bricks[i].getSize().y);
-        }
-        else if (i > 50 && i < 100)
-        {
-            bricks[i].setPosition(bricks[i-1].getPosition().x + bricks[i].getSize().x, bricks[i-1].getPosition().y);
-        }
-        else if (i==100)
-        {
-            bricks[i].setPosition(0, 12+bricks[i].getSize().y);
-        }
-        else if (i > 100 && i < 150)
-        {
-            bricks[i].setPosition(bricks[i-1].getPosition().x + bricks[i].getSize().x, bricks[i-1].getPosition().y);
-        }
-        else if (i==150)
-        {
-            bricks[i].setPosition(0, 24+bricks[i].getSize().y);
-        }
-        else if (i > 150 && i < 200)
-        {
-            bricks[i].setPosition(bricks[i-1].getPosition().x + bricks[i].getSize().x, bricks[i-1].getPosition().y);
-        }
-
-        else if (i==200)
-        {
-            bricks[i].setPosition(0, 36+bricks[i].getSize().y);
-        }
-        else if (i > 200 && i < 250)
-        {
-            bricks[i].setPosition(bricks[i-1].getPosition().x + bricks[i].getSize().x, bricks[i-1].getPosition().y);
-        }
-        else if (i==250)
-        {
-            bricks[i].setPosition(0, 48+bricks[i].getSize().y);
-        }
-        else if (i > 250 && i < 300)
-        {
-            bricks[i].setPosition(bricks[i-1].getPosition().x + bricks[i].getSize().x, bricks[i-1].getPosition().y);
-        }
-        else if (i==300)
-        {
-            bricks[i].setPosition(0, 60+bricks[i].getSize().y);
-        }
-        else if (i > 300 && i < 350)
-        {
-            bricks[i].setPosition(bricks[i-1].getPosition().x + bricks[i].getSize().x, bricks[i-1].getPosition().y);
-        }
-        else if (i==350)
-        {
-            bricks[i].setPosition(0, 72+bricks[i].getSize().y);
-        }
-        else if (i > 350 && i < 400)
-        {
-            bricks[i].setPosition(bricks[i-1].getPosition().x + bricks[i].getSize().x, bricks[i-1].getPosition().y);
-        }
-        else if (i==400)
-        {
-            bricks[i].setPosition(0, 84+bricks[i].getSize().y);
-        }
-        else if (i > 400 && i < 450)
-        {
-            bricks[i].setPosition(bricks[i-1].getPosition().x + bricks[i].getSize().x, bricks[i-1].getPosition().y);
-        }
-        else if (i==450)
-        {
-            bricks[i].setPosition(0, 96+bricks[i].getSize().y);
-        }
-        else if (i > 450 && i < 500)
-        {
-            bricks[i].setPosition(bricks[i-1].getPosition().x + bricks[i].getSize().x, bricks[i-1].getPosition().y);
-        }
-
-    }  
+	   
+	  
+    }
 
     ball.setPosition(paddle.getPosition()); //the ball will start where the paddle is
 
@@ -170,7 +101,7 @@ void PlayGame()
             }
         }
 
-       //using the mousemovement to control the paddle.
+       //using the mouse movement to control the paddle.
         if (sf::Mouse::getPosition(window).x > 0 && sf::Mouse::getPosition(window).x < (window.getSize().x - paddle.getSize().x))
             paddle.setPosition(sf::Mouse::getPosition(window).x, paddle.getPosition().y);
 	 //this for loop handles the brick/ball collison 
