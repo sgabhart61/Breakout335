@@ -66,7 +66,7 @@ int main()
     top.setFillColor(sf::Color::White);
     top.setPosition(sf::Vector2f(0,0));
     //creating the brick properties 
-    for (unsigned i = 0; i < 500; i++)
+    for (int i = 0; i < 500; i++)
     {
         bricks[i].setFillColor(sf::Color::Blue);
         bricks[i].setSize(sf::Vector2f(32, 12));
