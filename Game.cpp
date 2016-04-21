@@ -110,6 +110,7 @@ int main()
 	 //this for loop handles the brick/ball collison 
         for (int i = 0; i < 500; i++)
         {
+        	//global bounds comes from the sfml library, takes in acount transformations, such as rotation
             if(bricks[i].getGlobalBounds().intersects(ball.getGlobalBounds()))
             {
                 ballSpeed.y = -ballSpeed.y; //change direction of movement
@@ -118,7 +119,7 @@ int main()
 				score = asm_score(score);
 				string s = to_string(score);
 				scoreBox.setString(s);
-                i = 499;   //terminates loop when all bricks are hit
+                i = 499;   //one brick at a time, they dissapere and the loop terminates
             }
         }
 	  //series of if statments helps the ball stay within the game window.
