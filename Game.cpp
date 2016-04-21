@@ -2,6 +2,9 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
+#include "menu.h"
+
+
 
 using namespace std;
 
@@ -13,13 +16,13 @@ int main() {
 	asm_main();
 }
 
-void PlayGame()
+int main()
 {
-	int score = 0;
-	
     //game window
     sf::RenderWindow window(sf::VideoMode (640,480), "Breakout!");
-
+    //game menu screen 
+   // menu Menu(window.getSize().x, window.getSize().y);
+   
    //declaring objects such as ball and paddle
     sf::RectangleShape bricks[500];
     sf::CircleShape ball(8.f);
@@ -146,20 +149,20 @@ void PlayGame()
         }
 
         ball.move(ballSpeed.x, ballSpeed.y);
-
+	     
         window.clear(sf::Color::White);
 
-
+	    
         for (unsigned i = 0; i < 250; i++)
         {
             window.draw(bricks[i]);
         }
+	  // Menu.draw(window);
 	   //drawing objects to window.
         window.draw(top);
         window.draw(bottom);
         window.draw(leftSide);
         window.draw(rightSide);
-
         window.draw(paddle);
         window.draw(ball);
         window.draw(scoreBox);
